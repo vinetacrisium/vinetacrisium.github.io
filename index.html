@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vivace</title>
+    <link rel="icon" type="image/x-icon" href="Assets/Images/Favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+      <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a7c45f933d.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <img src="Images/Logo.svg">
+        <div></div>
+        <a href="#menu"class="header-button mobile-menu"><h4>Menu</h4></a>
+        <button class="header-button mobile-menu" onclick="OpenBurger()"><img src="Images/Burger.png"></button>
+        <div class="navbar-container">
+          <div class="spacer"></div>
+          <a href="#hero" onclick="OpenBurger()"><h4 class="text-burger">About</h4></a>
+          <a href="#menu" id="menu-button"><h4 class="text-burger">Menu</h4></a>
+          <a href="#responsibility" onclick="OpenBurger()"><h4 class="text-burger">Responsibility</h4></a>
+          <a href="#gallery" onclick="OpenBurger()"><h4 class="text-burger">Gallery</h4></a>
+          <a href="#footer" onclick="OpenBurger()"><h4 class="text-burger">Contact</h4></a>
+          <div class="header-sm">
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-square-facebook"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <section class="hero-container" id="hero">
+      <h2 class="hero-title mobile">A place for coffee and community</h2>
+      <div class="hero-image-container"><img class="hero-image" src="Images/HeroImage.png"></div>
+      <div class="hero-content">
+        <h2 class="hero-title desktop">A place for coffee and community</h2>
+        <div id="map"></div>
+        <div class="hero-info">
+          <h4 class="address">Námestie SNP 241, Bratislava</h4>
+          <div class="hero-open">
+            <h4>MON-FRI<p class="time">7:00-19:30</p></h4>
+            <h4>SAT-SUN<p class="time">8:00-19:30</p></h4>
+          </div>
+          <ul>
+            <li><p>Free Wi-Fi</p></li>
+            <li><p>Pets are welcome</p></li>
+            <li><p>Communal seating available</p></li>
+          </ul>
+        </div>
+        <p class="hero-text">Vivace is a small coffee shop located in the Old Town of Bratislava. It’s a place that is more than just coffee to-go. We built Vivace as a cozy community space filled with warmth, character and good vibes. Whether you come alone or with friends, you’re always welcome to a hot cup of coffee.</p>
+      </div>
+    </section>
+
+    <section class="menu-container" id="menu">
+      <h2 class="menu-title">Menu</h2>
+      <div class="menu-container-inner">
+      <img src="Images/Menu-coffee.jpg" class="tea" id="menu-mobile">
+      <div class="menu-selector">
+        <button class="menu-button" onclick="SwapMenu('coffee')"><h4>Coffee</h4></button>
+        <button class="menu-button" onclick="SwapMenu('tea')"><h4>Tea</h4></button>
+        <button class="menu-button" onclick="SwapMenu('season')"><h4>Seasonal</h4></button>
+        <div style="flex-basis: 100%;"></div>
+        <button class="menu-button" onclick="SwapMenu('food')"><h4>Food</h4></button>
+      </div>
+      <div class="menu-content">
+        <div class="menu-list-container">
+        <ul class="menu-list" id="coffee">
+          <h3 class="desktop-title">Coffee</h3>
+          <li><div class="menu-item"><p>Single shot</p><h4>1.9 €</h4></div></li>
+            <li><div class="menu-item"><p>Double shot</p><h4>2.5 €</h4></div></li>
+            <li><div class="menu-item"><p>Americano</p><h4>2.0 €</h4></div></li>
+            <li><div class="menu-item"><div class="menu-item-inner"><p>Latte</p><p class="accent">(Cow/oat/soy/almond milk)</p></div><h4>2.6 €</h4></div></li>
+            <li><div class="menu-item"><p>Cappucino</p><h4>2.5 €</h4></div></li>
+            <li><div class="menu-item"><p>Filter coffee</p><h4>3.0 €</h4></div></li>
+        </ul>
+            <img class="menu-image coffee" src="Images/Menu-coffee.jpg">
+        </div>
+
+         <div class="menu-list-container" id="seasonal">
+        <div class="season-container"><img class="menu-image season" src="Images/Menu-season.jpg"></div>
+        <ul class="menu-list" id="season">
+          <h3 class="desktop-title">Seasonal</h3>
+          <li><div class="menu-item"><div class="menu-item-inner"><p>Cinnamon and ginger latte</p><p class="accent">(Cow/oat/soy/almond milk)</p></div><h4>2.6 €</h4></div></li>
+            <li><div class="menu-item"><div class="menu-item-inner"><p>White hot chocolate</p><p class="accent">Allergens: dairy</p></div><h4>2.5 €</h4></div></li>
+        </ul>
+        </div>
+
+        
+      </div>
+       
+      <div class="menu-content second-column">
+        <div class="menu-list-container">
+          <img class="menu-image tea" src="Images/Menu-tea.jpg">
+        <ul class="menu-list" id="tea">
+          <h3 class="desktop-title">Tea</h3>
+          <li><div class="menu-item"><p>Black / Green / Earl Gray</p><h4>2.8 €</h4></div></li>
+            <li><div class="menu-item"><p>Matcha tea</p><h4>3.6 €</h4></div></li>
+            <li><div class="menu-item"><p>Matcha latte</p><h4>4.0 €</h4></div></li>
+            <li><div class="menu-item"><p>Yerba mate</p><h4>2.8 €</h4></div></li>
+        </ul>
+        </div>
+
+        <div class="menu-list-container" id="food-container">
+        <ul class="menu-list" id="food">
+          <h3 class="desktop-title">Food</h3>
+          <li><div class="menu-item"><div class="menu-item-inner"><p>Croissant</p> <p class="accent">Allergens: Dairy, eggs</p></div><h4>2.0 €</h4></div></li>
+            <li><div class="menu-item"><div class="menu-item-inner"><p>Pain au chocolat</p> <p class="accent">Allergens: Dairy, eggs</p></div><h4>2.0 €</h4></div></li>
+            <li><div class="menu-item"><div class="menu-item-inner"><p>Sandwich</p> <p class="accent">(Ham/eggs/salmon)</p><p class="accent">Allergens: Dairy, egg</p></div><h4>4.5 €</h4></div></li>
+        </ul>
+            <div class="food-container"><img class="menu-image food" src="Images/Menu-food.jpg"></div>
+        </div>
+
+      </div>
+      </div>
+    </section>
+
+    <section id="responsibility">
+    <h2 class="resp-title">Responsibility</h2>  
+    <div class="resp-container">
+      <div class="resp-content">
+        <img src="Images/Responsibility-1.jpg" class="resp-image">
+        <div class="resp-textbox">
+          <h4 class="resp-subtitle">WE USE FAIR TRADE<br class="resp-break"> COFFEE</h4>
+          <p>We respect the people behind the coffee. As part of our commitment to fair and ethical coffee sourcing, we only work with farmers and partners who guarantee respectful conditions and fair pay for the staff.</p>
+        </div>
+      </div>
+
+      <div class="resp-content">
+        <img src="Images/Responsibility-2.jpg" class="resp-image">
+        <div class="resp-textbox">
+          <h4 class="resp-subtitle">WE CARE ABOUT<br class="resp-break"> NATURE</h4>
+          <p style="word-break: break-word;">If you need a coffee on the go, we always provide you with a compostable cup. We strive minimize our environmental impact in all parts of our operation, from waste reduction to energy and water consumption.</p>
+        </div>
+      </div>
+
+      <div class="resp-content">
+        <img src="Images/Responsibility-3.jpg" class="resp-image">
+        <div class="resp-textbox">
+          <h4 class="resp-subtitle">WE DO RIGHT BY OUR <br class="resp-break"> PEOPLE</h4>
+          <p>Since the very beginning, we wanted to create a fair, enjoyable and safe working environment for our staff. Our employees are guaranteed fair and liveable wage because we want our team to feel valued and cared for.</p>
+        </div>
+      </div>
+    </div>
+    </section>
+
+
+    <section id="gallery">
+      <h2 class="gallery-title">Come over and bring a friend!</h2>
+      <div class="gallery-info">
+        <h4 class="gallery-address">Námestie SNP 241, Bratislava</h4>
+        <div class="gallery-hours">
+        <h4>MON-FRI <p class="gallery-text">7:00-19:30</p></h4>
+        <h4>SAT-SUN <p class="gallery-text">8:00-19:30</p></h4>
+        </div>
+      </div>
+
+      <div class="carousel-container">
+        <div class="gallery-carousel" id="carousel">
+        <picture class="carousel-image desktop-gal">
+          <source srcset="Images/Gallery-1.jpg" media="(width >= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-1.jpg" class="carousel-image">
+        </picture>
+        
+        <picture class="carousel-image desktop-gal">
+          <source srcset="Images/Gallery-2.jpg" media="(width >= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-2.jpg" class="carousel-image">
+        </picture>
+        <!-- <img src="Images/Gallery-1.jpg" class="carousel-image">
+        <img src="Images/Gallery-2.jpg" class="carousel-image"> -->
+        
+        <picture class="mobile">
+          <source srcset="Images/Gallery-2.jpg" media="(width <= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-1.jpg" class="carousel-image" id="img-1">
+        </picture>
+         
+        <picture class="mobile">
+          <source srcset="Images/Gallery-2.jpg" media="(width <= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-2.jpg" class="carousel-image" id="img-2">
+        </picture>
+         
+        <picture class="mobile">
+          <source srcset="Images/Gallery-3.jpg" media="(width <= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-3.jpg" class="carousel-image" id="img-3">
+        </picture>
+         
+        <picture class="mobile">
+          <source srcset="Images/Gallery-4.jpg" media="(width <= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-4.jpg" class="carousel-image" id="img-4">
+        </picture>
+         
+        <picture class="mobile">
+          <source srcset="Images/Gallery-5.jpg" media="(width <= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-5.jpg" class="carousel-image" id="img-5">
+        </picture>
+        
+   <!--      <img src="Images/Gallery-1.jpg" class="carousel-image mobile" id="img-1">
+        <img src="Images/Gallery-2.jpg" class="carousel-image mobile" id="img-2">
+        <img src="Images/Gallery-3.jpg" class="carousel-image mobile" id="img-3">
+        <img src="Images/Gallery-4.jpg" class="carousel-image mobile" id="img-4">
+        <img src="Images/Gallery-5.jpg" class="carousel-image mobile" id="img-5"> -->
+      </div>
+      
+      <div class="carousel-buttons">
+        <button class="carousel-button" onclick="ScrollGallery('img-1')" id="gal-1"><img src="Images/Gallery-Button.svg"></button>
+        <button class="carousel-button" onclick="ScrollGallery('img-2')" id="gal-2"><img src="Images/Gallery-Button.svg"></button>
+        <button class="carousel-button" onclick="ScrollGallery('img-3')" id="gal-3"><img src="Images/Gallery-Button.svg"></button>
+        <button class="carousel-button" onclick="ScrollGallery('img-4')" id="gal-4"><img src="Images/Gallery-Button.svg"></button>
+        <button class="carousel-button" onclick="ScrollGallery('img-5')" id="gal-5"><img src="Images/Gallery-Button.svg"></button>
+      </div>
+
+      <div class="gallery-desktop">
+         <picture class="desktop-gal">
+          <source srcset="Images/Gallery-3.jpg" media="(width >= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-3.jpg" class="carousel-image">
+        </picture>
+         
+        <picture class="desktop-gal">
+          <source srcset="Images/Gallery-4.jpg" media="(width >= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-4.jpg" class="carousel-image">
+        </picture>
+        
+        <picture class="desktop-gal">
+          <source srcset="Images/Gallery-5.jpg" media="(width >= 1100px)" />
+          <source srcset="Images/ph.png" />
+          <img src="Images/Gallery-5.jpg" class="carousel-image">
+        </picture>
+        
+        <!-- <img src="Images/Gallery-3.jpg" class="carousel-image">
+        <img src="Images/Gallery-4.jpg" class="carousel-image">
+        <img src="Images/Gallery-5.jpg" class="carousel-image"> -->
+      </div>
+      </div>
+      
+    </section>
+
+    
+      <footer class="footer-main" id="footer">
+      <h1 class="footer-title white">Vivace</h1>
+
+      <div class="footer-container">
+        <img class="footer-logo" src="Images/Logo_Footer.svg">
+        <div class="footer-info">
+          <div class="footer-column">
+            <a href="#hero" class="footer-1"><h4 class="white">About</h4></a> 
+            <a href="#menu" class="footer-1"><h4 class="white">Menu</h4></a> 
+            <a href="#responsibility" class="footer-1"><h4 class="white">Responsibility</h4></a> 
+            <a href="#gallery" class="footer-1"><h4 class="white">Gallery</h4></a> 
+          </div>
+
+          <div class="second-column-grid">
+          <div class="footer-column second">
+            <p class="footer-2 white">+421 000 000</p>
+            <p class="footer-2 white">contact@vivace.com</p>
+            <p class="footer-2 white">Námestie SNP 241, 811 06 Bratislava</p>
+            <div class="wrap-spacer"></div>
+          </div>
+          <div class="footer-sm">
+            <i class="fa-brands fa-instagram desktop-menu"></i>
+            <i class="fa-brands fa-square-facebook desktop-menu"></i>
+          </div>
+         </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+    const carousel = document.getElementById("carousel");
+    const carouselImages = document.getElementsByClassName("carousel-image");
+    var canIntersect = false;
+
+    const options = {
+      root: carousel,
+      threshold: 0.8,
+    };
+
+    // Checks for intersection between carousel images
+    const observer = new IntersectionObserver(Call, options);
+    for(let i = 0; i < carouselImages.length; i++){
+      observer.observe(carouselImages[i]);
+    }
+
+    // If an image is scrolled, change the color of the buttons
+    function Call(entries, observer){
+      if(canIntersect){
+        console.log(`gal-${entries[0].target.id[4]}`);
+        GalleryButton(`gal-${entries[0].target.id[4]}`);
+      }
+    }
+
+    window.onload = function(){
+      canIntersect = true;
+    }
+
+
+  // Opens the burger menu, only active on mobile
+  function OpenBurger(){
+    if(window.innerWidth < 1100){
+      var navbar = document.getElementsByClassName("navbar-container")[0];
+      var body = document.getElementsByTagName("body")[0];
+    
+      if(navbar.style.display == "none" || navbar.style.display == ""){
+        navbar.style.display = "grid";
+        body.style.overflow = "hidden";
+      }
+      else{
+        navbar.style.display = "none";
+        body.style.overflow = "auto";
+      }
+    }
+
+  }
+
+  // Swaps between different menus on mobile 
+  function SwapMenu(productID){
+    const menuArray = [document.getElementById("coffee"), 
+      document.getElementById("tea"),
+      document.getElementById("season"),
+      document.getElementById("food")
+    ]
+
+    const image = document.getElementById("menu-mobile")
+
+    for(let i = 0; i < menuArray.length; i++){
+      menuArray[i].style.display = "none";
+    }
+
+    document.getElementById(productID).style.display = "block";
+    image.setAttribute("src", `Images/Menu-${productID}.jpg`);
+    
+  }
+
+  // Changes the color of the buttons in mobile gallery
+  function GalleryButton(ButtonID){
+    const galleryButtons = document.getElementsByClassName("carousel-button");
+    const activeButton = document.getElementById(ButtonID);
+
+    for(let i = 0; i < galleryButtons.length; i++){
+      galleryButtons[i].style.filter = "none";
+    }
+    activeButton.style.filter = "brightness(0) saturate(100%) invert(86%) sepia(39%) saturate(222%) hue-rotate(343deg) brightness(103%) contrast(96%)";
+    observerAllowed = false;
+  }
+
+  // Scrolls the galery to the selected image on button press
+  function ScrollGallery(ImageID){
+    const image = document.getElementById(ImageID);
+
+    image.scrollIntoView({behavior: "smooth", block: "nearest", inline: "start"});
+  }
+
+  var map = L.map('map').setView([48.1452, 17.1118], 17);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  var marker = L.marker([48.1452, 17.1118]).addTo(map);
+  marker.bindTooltip("Vivace");
+  marker.bindPopup('<div class="popup"><h4 class="address">Námestie SNP 241, Bratislava</h4><h4>MON-FRI<p class="time-map" style="margin-left: 14px;">7:00-19:30</p></h4><h4>SAT-SUN<p class="time-map" style="margin-left: 14px;">8:00-19:30</p></h4></div>');
+
+</script>
