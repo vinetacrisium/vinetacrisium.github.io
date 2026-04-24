@@ -196,8 +196,7 @@ h1, h2, h3, h4, h5, h6 {
         place-items: center;
         column-gap: 18px;
         background-color: var(--color-background-1);
-        padding: var(--padding-main);
-        padding-top: 16px;
+        padding: 16px 100px;
         width: 100%;
         position: fixed;
 
